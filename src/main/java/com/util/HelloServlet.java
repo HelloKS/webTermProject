@@ -1,4 +1,4 @@
-package com.webTermProject;
+package com.util;
 
 import java.io.*;
 import javax.servlet.http.*;
