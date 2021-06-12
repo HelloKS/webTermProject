@@ -20,7 +20,7 @@
     <thead>
     <tr>
 <%--        <c:foreach var="board" items="${board.name}">--%>
-<%--        <td><button type="submit" formaction="/front/board/freeboard">${board.name}</button></td>--%>
+<%--        <td><button type="submit" formaction="/front/board/${board.english}">${board.name}</button></td>--%>
 <%--        </c:foreach>--%>
         <td><button type="submit" formaction="/front/board/freeboard">자유게시판</button></td>
         <td><button type="submit" formaction="/front/board/archieve">아콰이부</button> </td>
