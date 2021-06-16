@@ -1,4 +1,9 @@
 # webTermProject
+
+# 관련 사항
+접속은 http://IP:PORT/front/
+일단 급한대로 저번 개인프로젝트때 썼던 코드 가져옴
+
 # 요구사항
 - display:none, display:block 사용
 - accordion || sidebar 사용

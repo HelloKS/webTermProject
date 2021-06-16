@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource name="jdbc/mariadb" auth="Container" type="javax.sql.DataSource"
+              maxActive="10" maxIdle="3" maxWait="10000"
+              username="root" password="helloks"
+              driverClassName="org.mariadb.jdbc.Driver"
+              url="jdbc:mariadb://tae.0xffff.host:7389/webproj"
+              closeMethod="close" />
+</Context>
