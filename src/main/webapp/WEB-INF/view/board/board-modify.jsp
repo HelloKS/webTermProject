@@ -11,6 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>글 수정</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
 <form action="/front/board/modify" method="post">

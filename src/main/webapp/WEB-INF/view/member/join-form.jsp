@@ -8,11 +8,13 @@ charset과 pageEncoding을 utf-8로 변경 -->
 <head>
     <meta charset="utf-8">
     <title>웹프인사이드 회원가입</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/userjoin.css"/>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
 <div class="content">
+    <h2 style="text-align: center">회원가입</h2>
     <form action="/front/member/join" method="post" class="join_form">
         <div>
             <label for="email"><b>이메일 주소</b></label>

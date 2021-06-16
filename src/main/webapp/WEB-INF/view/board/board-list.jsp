@@ -7,29 +7,31 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
 <div class="content">
-    <table width="700" border="3" bordercolor="lightgray" align="center">
+    <h2 style="text-align: center">게시글 목록</h2>
+    <table width="100%" border="1" bordercolor="black" align="center">
         <thead>
         <tr>
-            <td>no</td>
-            <td>제 목</td>
-            <td>글쓴이</td>
-            <td>작성일</td>
-            <td>조회수</td>
+            <td width="10%">no</td>
+            <td width="45%">제 목</td>
+            <td width="15%">글쓴이</td>
+            <td width="15%">작성일</td>
+            <td width="10%">조회수</td>
         </tr>
         </thead>
-        <c:forEach var="board" items="${boards}">
+        <c:forEach var="post" items="${posts}">
             <tr>
-                <td>${board.id}</td>
+                <td>${post.id}</td>
                 <!--게시글 조회를 위한 href는 query string 사용, method = GET
                 href는 상대경로 사용 -> 현재경로 board/board-list, 요청경로 board/detail + request parameter -->
-                <td><a href="detail?id=${board.id}">${board.title}</a></td>
-                <td>${board.writer}</td>
-                <td>${board.regdate}</td>
-                <td>${board.hit}</td>
+                <td><a href="detail?id=${post.id}">${post.title}</a></td>
+                <td>${post.writer}</td>
+                <td>${post.regdate}</td>
+                <td>${post.hit}</td>
             </tr>
         </c:forEach>
     </table>

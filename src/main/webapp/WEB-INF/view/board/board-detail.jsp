@@ -9,15 +9,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="utf-8">
     <title>글 읽기</title>
 </head>
 <body>
-<table width="700" border="3" bordercolor="lightgray" align="center">
+<h2 style="text-align: center">게시글 열람</h2>
+<table width="100%" border="3" bordercolor="lightgray" align="center">
     <thead>
     <tr>
-        <td>게시글 번호</td>
-        <td><c:out value="${board.id}"/></td>
+        <td width="30%">게시글 번호</td>
+        <td width="60%"><c:out value="${board.id}"/></td>
     </tr>
     <tr>
         <td>제목</td>

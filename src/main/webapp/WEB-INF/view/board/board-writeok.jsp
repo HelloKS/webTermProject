@@ -9,9 +9,14 @@
 <html>
 <head>
     <title>작성 성공</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
-처리가 완료되었습니다.
-<a href="/front/board/list">목록으로 돌아가기</a>
+<jsp:include page="../layout/header.jsp"/>
+<div class="content">
+    처리가 완료되었습니다.
+    <a href="/front/board/list">목록으로 돌아가기</a>
+</div>
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

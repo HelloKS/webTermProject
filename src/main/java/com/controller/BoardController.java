@@ -7,6 +7,7 @@ import com.service.PostService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,12 +24,14 @@ public class BoardController implements Controller {
             throws ServletException, IOException {
         ModelAndView modelAndView = new ModelAndView();
         if (url.equals("/board/list")) {
-            ArrayList<Board> boards = boardService.findBoards();
+            ArrayList<Post> posts = postService.findAllPosts();
             modelAndView.setViewName("board/board-list");
-            modelAndView.getModel().put("boards", boards);
+            modelAndView.getModel().put("posts", posts);
         } else if (url.equals("/board/write")) {
             if (request.getMethod().equals("GET")) {
+                List<Board> boards = boardService.findBoards();
                 modelAndView.setViewName("board/board-write");
+                modelAndView.getModel().put("boards", boards);
             } else if (request.getMethod().equals("POST")) {
                 request.setCharacterEncoding("UTF-8");
                 /*

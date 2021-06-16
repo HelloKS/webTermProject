@@ -1,14 +1,9 @@
-.header {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
 .header .logo {}
 
 .header .menu {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .header h1{
@@ -20,9 +15,9 @@
 }
 
 .header .util{
-    margin-left: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .header .menu a {
@@ -32,3 +27,31 @@
 .header .util button {
     margin: 0.5rem;
 }
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        text-align: left;
+    }
+
+    .header .util {
+        margin-left: auto;
+        justify-content: left;
+    }
+
+    .header .menu {
+        justify-content: left;
+    }
+}
+
