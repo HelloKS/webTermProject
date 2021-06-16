@@ -6,25 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page pageEncoding="UTF-8" %>
-<link rel="stylesheet" type="text/css" href="header.css">
-<header class="header.header">
-    <h1><a href="/front">SE BOARD</a></h1>
+<link rel="stylesheet" type="text/css" href="/resources/header.css"/>
+<div class="header">
+    <div>
+        <h1><a href="/front/">웹프인사이드</a></h1>
+    </div>
 
-    <div class="header.util">
-        <!-- ACCOUNT -->
-        <form method="post" class="account" >
+    <div class="util">
+        <form method="post" class="account">
             <button name="login">로그인</button>
         </form>
-        <!-- /ACCOUNT -->
 
-        <!-- SEARCH -->
         <form method="get" class="search" >
-                <input type="text" name="search">
-                <button type="submit">검색</button>
+            <input type="text" name="search">
+            <button type="submit">검색</button>
         </form>
-        <!-- /SEARCH -->
     </div>
-</header>
-<div>
-    <%@ include file="/post/post-list.jsp"%>
 </div>

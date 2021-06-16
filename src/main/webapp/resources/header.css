@@ -1,28 +1,28 @@
-.header\.header{
+.header {
     display: block;
     margin: 0 0 17px 0;
     position: relative
 }
-.header\.header > h1{
+.header h1{
     display: inline-block;
     margin: 19px 0
 }
-.header\.header > h1 > a{
+.header h1 > a{
     text-decoration: none;
     color: black;
     display: block
 }
-.header\.util{
+.header > .util{
     display: block;
     position: absolute;
     right:0;
     bottom:57px
 }
-.account{
+.header .account{
     display: inline-block;
     vertical-align: top
 }
-.search{
+.header .search{
     display: inline-block;
     vertical-align: top
 }

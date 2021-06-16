@@ -11,8 +11,8 @@ charset과 pageEncoding을 utf-8로 변경 -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>	
-	<a href="/shop/front/"></a>
+<body>
+	<a href="/front/">이전</a>
 	<table width="700" border="3" bordercolor="lightgray" align="center">
 		<thead>
 			<tr>

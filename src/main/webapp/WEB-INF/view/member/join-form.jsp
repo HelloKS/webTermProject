@@ -11,7 +11,8 @@ charset과 pageEncoding을 utf-8로 변경 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/userjoin.css"/>
 </head>
 <body>
-<form action="/front/member/join" method="post">
+<jsp:include page="../layout/header.jsp"/>
+<form action="/front/member/join" method="post" class="join_form">
     <div>
         <label for="email"><b>이메일 주소</b></label>
         <input type="email" placeholder="id@example.com" name="email" id="email">
@@ -27,9 +28,10 @@ charset과 pageEncoding을 utf-8로 변경 -->
         <input type="text" name="nick" id="nick">
     </div>
 
-    <div class="button">
+    <div class="join_button">
         <button type="submit">회원가입</button>
     </div>
 </form>
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>
