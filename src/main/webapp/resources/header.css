@@ -1,28 +1,34 @@
 .header {
-    display: block;
-    margin: 0 0 17px 0;
-    position: relative
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
+
+.header .logo {}
+
+.header .menu {
+    display: flex;
+    align-items: center;
+}
+
 .header h1{
     display: inline-block;
-    margin: 19px 0
 }
 .header h1 > a{
     text-decoration: none;
-    color: black;
-    display: block
+    color: dodgerblue;
 }
-.header > .util{
-    display: block;
-    position: absolute;
-    right:0;
-    bottom:57px
+
+.header .util{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
 }
-.header .account{
-    display: inline-block;
-    vertical-align: top
+
+.header .menu a {
+    margin: 0 0.5rem;
 }
-.header .search{
-    display: inline-block;
-    vertical-align: top
+
+.header .util button {
+    margin: 0.5rem;
 }

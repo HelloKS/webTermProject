@@ -118,14 +118,14 @@ public class MemberRepository {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, mail);
             rs = pstmt.executeQuery();
-            if (rs.next() == false) {
+            if (rs.next()) {
+                member.setUid(rs.getInt(1));
+                member.setEmail(rs.getString(2));
+                member.setPassword(rs.getString(3));
+                member.setNickname(rs.getString(4));
+            } else {
                 return null;
             }
-            rs.next();
-            member.setUid(rs.getInt(1));
-            member.setEmail(rs.getString(2));
-            member.setPassword(rs.getString(3));
-            member.setNickname(rs.getString(4));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -178,5 +178,40 @@ public class MemberRepository {
             }
         }
         return members;
+    }
+
+    public boolean checkLogin(String email, String pass) {
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM USER WHERE user_mail = ? AND user_password = ?";
+        boolean isCorrect = false;
+        try {
+            conn = ds.getConnection();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            st = conn.prepareStatement(sql);
+            st.setString(1, email);
+            st.setString(2, pass);
+            rs = st.executeQuery();
+
+            isCorrect = rs.next(); // 맞는게 있으면 true 리턴
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                st.close();
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return isCorrect;
     }
 }

@@ -12,15 +12,16 @@ charset과 pageEncoding을 utf-8로 변경 -->
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/front/">이전</a>
+<jsp:include page="../layout/header.jsp"/>
+<div class="content">
 	<table width="700" border="3" bordercolor="lightgray" align="center">
 		<thead>
-			<tr>
-				<td>회원 고유 코드</td>
-				<td>이메일</td>
-				<td>닉네임</td>
-			</tr>
-		</thead>		
+		<tr>
+			<td>회원 고유 코드</td>
+			<td>이메일</td>
+			<td>닉네임</td>
+		</tr>
+		</thead>
 		<c:forEach var="member" items="${members}">
 			<tr>
 				<td>${member.uid}</td>
@@ -28,6 +29,8 @@ charset과 pageEncoding을 utf-8로 변경 -->
 				<td>${member.nickname}</td>
 			</tr>
 		</c:forEach>
-	</table>	
+	</table>
+</div>
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

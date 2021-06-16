@@ -10,6 +10,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class MemberController implements Controller {
 
@@ -39,8 +40,21 @@ public class MemberController implements Controller {
           if (request.getMethod().equals("GET")) {
               modelAndView.setViewName("member/login-form");
           } else if (request.getMethod().equals("POST")) {
-              //여기에 세션 담기
+              Member member = new Member();
+              member.setEmail(request.getParameter("email"));
+              member.setPassword(request.getParameter("pass"));
+              member = memberService.tryLogin(member);
+
+              request.getSession(true).setAttribute("LOGIN", member);
+              modelAndView.setViewName("index");
           }
+        } else if (url.equals("/member/logout")) {
+            if (request.getMethod().equals("GET")) {
+                HttpSession session = request.getSession(true);
+                session.invalidate();
+
+                modelAndView.setViewName("index");
+            }
         } else {
             modelAndView.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }

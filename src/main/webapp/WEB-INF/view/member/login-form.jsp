@@ -12,21 +12,23 @@ charset과 pageEncoding을 utf-8로 변경 -->
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
-<form action="/front/member/login" method="post" class="join_form">
-    <div>
-        <label for="email"><b>이메일 주소</b></label>
-        <input type="email" placeholder="id@example.com" name="email" id="email">
-    </div>
+<div class="content">
+    <form action="/front/member/login" method="post" class="join_form">
+        <div>
+            <label for="email"><b>이메일 주소</b></label>
+            <input type="email" placeholder="id@example.com" name="email" id="email">
+        </div>
 
-    <div>
-        <label for="pass"><b>비밀번호</b></label>
-        <input type="password" name="pass" id="pass">
-    </div>
+        <div>
+            <label for="pass"><b>비밀번호</b></label>
+            <input type="password" name="pass" id="pass">
+        </div>
 
-    <div class="join_button">
-        <button type="submit">로그인</button>
-    </div>
-</form>
+        <div class="join_button">
+            <button type="submit">로그인</button>
+        </div>
+    </form>
+</div>
 <jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

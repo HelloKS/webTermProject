@@ -28,6 +28,16 @@ public class MemberService {
         }
     }
 
+    // 여기서 받는 member는 이메일과 패스워드 밖에 없음
+    public Member tryLogin(Member member) {
+        if (!memberRepository.checkLogin(member.getEmail(), member.getPassword())) {
+            throw new IllegalArgumentException("아이디 혹은 패스워드가 틀림");
+        }
+
+        Member user = memberRepository.findByEmail(member.getEmail());
+        return user;
+    }
+
     public ArrayList<Member> findMembers() {
         return memberRepository.findAll();
     }
