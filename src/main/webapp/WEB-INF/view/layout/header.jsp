@@ -13,9 +13,7 @@
     </div>
 
     <div class="util">
-        <form method="post" class="account">
-            <button name="login">로그인</button>
-        </form>
+        <button onclick="window.location.href='/front/member/login'">로그인</button>
 
         <form method="get" class="search" >
             <input type="text" name="search">

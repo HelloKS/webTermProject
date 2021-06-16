@@ -35,6 +35,12 @@ public class MemberController implements Controller {
             ArrayList<Member> members = memberService.findMembers();
             modelAndView.setViewName("member/member-list");
             modelAndView.getModel().put("members", members);
+        } else if (url.equals("/member/login")) {
+          if (request.getMethod().equals("GET")) {
+              modelAndView.setViewName("member/login-form");
+          } else if (request.getMethod().equals("POST")) {
+              //여기에 세션 담기
+          }
         } else {
             modelAndView.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
