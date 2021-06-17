@@ -67,11 +67,9 @@ public class PostController implements Controller {
             postService.addHit(postid);
             Post article = postService.findArticleById(postid);
             Board board = boardService.findBoardById(article.getBoardId());
-            Member writer = memberService.findByUserId(article.getWriterId());
             modelAndView.setViewName("post/post-detail");
             modelAndView.getModel().put("post", article);
             modelAndView.getModel().put("board", board);
-            modelAndView.getModel().put("writer", writer);
         } else if (url.equals("/post/modify")) {
             if (request.getMethod().equals("GET")) {
                 // GET = 해당 게시글의 수정화면 출력

@@ -161,7 +161,7 @@ public class PostRepository {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM POST WHERE post_id = ?";
+        String sql = "SELECT * FROM POST P LEFT JOIN USER U ON P.user_uid = U.user_uid WHERE post_id = ?";
         Post article = null;
         try {
             conn = ds.getConnection();
@@ -182,7 +182,9 @@ public class PostRepository {
                 LocalDateTime regdate = rs.getTimestamp("post_written").toLocalDateTime();
                 int hit = rs.getInt("post_hit");
                 int user = rs.getInt("user_uid");
+                String writername = rs.getString("user_name");
                 article = new Post(aid, bid, title, content, regdate, hit, user);
+                article.setWriterName(writername);
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -204,7 +206,7 @@ public class PostRepository {
         Connection conn = null;
         Statement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM POST";
+        String sql = "SELECT * FROM POST P LEFT JOIN USER U ON P.user_uid = U.user_uid";
         ArrayList<Post> posts = new ArrayList<>();
         try {
             conn = ds.getConnection();
@@ -223,7 +225,9 @@ public class PostRepository {
                 LocalDateTime regdate = rs.getTimestamp("post_written").toLocalDateTime();
                 int hit = rs.getInt("post_hit");
                 int user = rs.getInt("user_uid");
+                String writername = rs.getString("user_name");
                 Post article = new Post(aid, bid, title, content, regdate, hit, user);
+                article.setWriterName(writername);
                 posts.add(article);
             }
         } catch (SQLException e) {

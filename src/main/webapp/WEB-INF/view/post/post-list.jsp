@@ -43,7 +43,7 @@
                 <!--게시글 조회를 위한 href는 query string 사용, method = GET
                 href는 상대경로 사용 -> 현재경로 board/board-list, 요청경로 board/detail + request parameter -->
                 <td><a href="detail?id=${post.id}">${post.title}</a></td>
-                <td>${post.writerId}</td>
+                <td>${post.writerName}</td>
                 <td>${post.regdate}</td>
                 <td>${post.hit}</td>
             </tr>
