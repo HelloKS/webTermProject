@@ -16,41 +16,43 @@
 <body>
 <jsp:include page="../layout/header.jsp"/>
 <h2 style="text-align: center">게시글 열람</h2>
-<table width="100%" border="3" bordercolor="lightgray" align="center">
-    <thead>
-    <tr>
-        <td width="30%">게시글 번호</td>
-        <td width="60%"><c:out value="${post.id}"/></td>
-    </tr>
-    <tr>
-        <td>제목</td>
-        <td><c:out value="${post.title}"/></td>
-    </tr>
-    <tr>
-        <td>게시판</td>
-        <td><c:out value="${board.name}"/></td>
-    </tr>
-    <tr>
-        <td>작성자 이름</td>
-        <td><c:out value="${post.writerId}"/></td>
-    </tr>
-    <tr>
-        <td>작성 일자</td>
-        <td><c:out value="${post.regdate}"/></td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>내용</td>
-        <td><c:out value="${post.contents}"/></td>
-    </tr>
-    </tbody>
-</table>
-<a href="list">뒤로 가기</a>
-<c:if test="${!empty LOGIN}">
-    <a href="modify?id=<c:out value="${post.id}"/>">수정</a>
-    <a href="delete?id=<c:out value="${post.id}"/>">삭제</a>
-</c:if>
+<div class="content">
+    <table width="100%" border="3" bordercolor="lightgray" align="center">
+        <thead>
+        <tr>
+            <td width="30%">게시글 번호</td>
+            <td width="60%"><c:out value="${post.id}"/></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td><c:out value="${post.title}"/></td>
+        </tr>
+        <tr>
+            <td>게시판</td>
+            <td><c:out value="${board.name}"/></td>
+        </tr>
+        <tr>
+            <td>작성자 이름</td>
+            <td><c:out value="${post.writerId}"/></td>
+        </tr>
+        <tr>
+            <td>작성 일자</td>
+            <td><c:out value="${post.regdate}"/></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>내용</td>
+            <td><c:out value="${post.contents}"/></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="list">뒤로 가기</a>
+    <c:if test="${!empty LOGIN}">
+        <a href="modify?id=<c:out value="${post.id}"/>">수정</a>
+        <a href="delete?id=<c:out value="${post.id}"/>">삭제</a>
+    </c:if>
+</div>
 <jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>
