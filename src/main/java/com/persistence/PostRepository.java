@@ -129,6 +129,34 @@ public class PostRepository {
         }
     }
 
+    public void updateHit(int id) {
+        Connection conn = null;
+        PreparedStatement st = null;
+        String sql = "UPDATE POST SET post_hit = post_hit + 1 WHERE post_id = ?";
+        try {
+            conn = ds.getConnection();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            st = conn.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            try {
+                st.close();
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
     public Post findById(int id) {
         Connection conn = null;
         PreparedStatement st = null;

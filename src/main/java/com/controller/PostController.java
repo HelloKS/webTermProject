@@ -51,7 +51,9 @@ public class PostController implements Controller {
             modelAndView.getModel().put("posts", posts);
         } else if (url.equals("/post/detail")) {
             // 해당 게시글의 상세 내용 조회
-            Post article = postService.findArticleById(Integer.parseInt(request.getParameter("id")));
+            int postid = Integer.parseInt(request.getParameter("id"));
+            postService.addHit(postid);
+            Post article = postService.findArticleById(postid);
             Board board = boardService.findBoardById(article.getBoardId());
             modelAndView.setViewName("post/post-detail");
             modelAndView.getModel().put("post", article);

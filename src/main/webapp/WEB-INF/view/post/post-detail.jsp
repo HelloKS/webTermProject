@@ -39,11 +39,14 @@
             <td>작성 일자</td>
             <td><c:out value="${post.regdate}"/></td>
         </tr>
+        <tr>
+            <td>조회수</td>
+            <td><c:out value="${post.hit}"/></td>
+        </tr>
         </thead>
         <tbody>
         <tr>
-            <td>내용</td>
-            <td><c:out value="${post.contents}"/></td>
+            <td colspan="2"><c:out value="${post.contents}"/></td>
         </tr>
         </tbody>
     </table>
