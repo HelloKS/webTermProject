@@ -1,9 +1,7 @@
 .header .logo {}
 
 .header .menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: none;
 }
 
 .header h1{
@@ -15,9 +13,7 @@
 }
 
 .header .util{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: none;
 }
 
 .header .menu a {
@@ -36,6 +32,47 @@
     text-align: center;
 }
 
+/* 옆 메뉴 */
+.sidemenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.sidemenu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidemenu a:hover {
+    color: #f1f1f1;
+}
+
+.sidemenu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .header {
         display: flex;
@@ -46,12 +83,24 @@
     }
 
     .header .util {
+        display: flex;
+        align-items: center;
         margin-left: auto;
         justify-content: left;
     }
 
     .header .menu {
+        display: flex;
+        align-items: center;
         justify-content: left;
+    }
+
+    #category {
+        width: 0;
+    }
+
+    .openbtn {
+        display: none;
     }
 }
 
