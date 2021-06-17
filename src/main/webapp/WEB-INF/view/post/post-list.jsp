@@ -12,7 +12,21 @@
 <body>
 <jsp:include page="../layout/header.jsp"/>
 <div class="content">
-    <h2 style="text-align: center">게시글 목록</h2>
+    <c:choose>
+        <c:when test="${!empty board}">
+            <h1 style="text-align: center">게시물: <c:out value="${board.name}"/></h1>
+            <h2 style="text-align: center"><c:out value="${board.desc}"/></h2>
+        </c:when>
+        <c:otherwise>
+            <h1 style="text-align: center">게시물: 전체 게시판</h1>
+        </c:otherwise>
+    </c:choose>
+    <div style="text-align: center">
+        <a href="/front/post/list">전체</a>
+        <c:forEach var="bd" items="${allboard}">
+            <a href="/front/post/list?bdid=${bd.id}">${bd.name}</a>
+        </c:forEach>
+    </div>
     <table width="100%" border="1" bordercolor="black" align="center">
         <thead>
         <tr>
@@ -29,7 +43,7 @@
                 <!--게시글 조회를 위한 href는 query string 사용, method = GET
                 href는 상대경로 사용 -> 현재경로 board/board-list, 요청경로 board/detail + request parameter -->
                 <td><a href="detail?id=${post.id}">${post.title}</a></td>
-                <td>${post.writerId}</td>
+                <td>${post.writerName}</td>
                 <td>${post.regdate}</td>
                 <td>${post.hit}</td>
             </tr>

@@ -7,6 +7,7 @@ public class Post {
 	private String title;
 	private int boardId; //게시판 id
 	private int writerId; //작성자 uid
+	private String writerName;
 	private String contents;
 	private LocalDateTime regdate;
 	private int hit;
@@ -77,5 +78,13 @@ public class Post {
 
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+
+	public String getWriterName() {
+		return writerName;
+	}
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 }

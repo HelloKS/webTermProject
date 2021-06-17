@@ -27,4 +27,5 @@ public class PostService {
 	public ArrayList<Post> findBoardPosts(int boardId) {
 		return postRepository.findByBoardId(boardId);
 	}
+	public void addHit(int id) {postRepository.updateHit(id);}
 }

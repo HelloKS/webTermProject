@@ -38,6 +38,10 @@ public class MemberService {
         return user;
     }
 
+    public Member findByUserId(int id) {
+        return memberRepository.findByUserId(id);
+    }
+
     public ArrayList<Member> findMembers() {
         return memberRepository.findAll();
     }

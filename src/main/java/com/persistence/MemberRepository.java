@@ -141,6 +141,44 @@ public class MemberRepository {
         return member;
     }
 
+    public Member findByUserId(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Member member = new Member();
+        String sql = "SELECT * FROM USER WHERE user_uid = ?";
+        try {
+            conn = ds.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                member.setUid(rs.getInt(1));
+                member.setEmail(rs.getString(2));
+                member.setPassword(rs.getString(3));
+                member.setNickname(rs.getString(4));
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return member;
+    }
+
     public ArrayList<Member> findAll() {
         Connection conn = null;
         Statement st = null;

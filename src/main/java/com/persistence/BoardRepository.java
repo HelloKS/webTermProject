@@ -35,7 +35,7 @@ public class BoardRepository {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM BOARD WHERE id = ?";
+        String sql = "SELECT * FROM BOARD WHERE board_id = ?";
         Board bd = null;
         try {
             conn = ds.getConnection();
