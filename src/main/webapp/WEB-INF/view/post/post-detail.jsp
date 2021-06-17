@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td>작성자 이름</td>
-            <td><c:out value="${post.writerId}"/></td>
+            <td><c:out value="${writer.nickname}"/></td>
         </tr>
         <tr>
             <td>작성 일자</td>

@@ -4,6 +4,7 @@ import com.domain.Board;
 import com.domain.Member;
 import com.domain.Post;
 import com.service.BoardService;
+import com.service.MemberService;
 import com.service.PostService;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import java.util.List;
 public class PostController implements Controller {
     private final PostService postService = new PostService();
     private final BoardService boardService = new BoardService();
+    private final MemberService memberService = new MemberService();
     private LocalDateTime current = null;
 
     @Override
@@ -65,9 +67,11 @@ public class PostController implements Controller {
             postService.addHit(postid);
             Post article = postService.findArticleById(postid);
             Board board = boardService.findBoardById(article.getBoardId());
+            Member writer = memberService.findByUserId(article.getWriterId());
             modelAndView.setViewName("post/post-detail");
             modelAndView.getModel().put("post", article);
             modelAndView.getModel().put("board", board);
+            modelAndView.getModel().put("writer", writer);
         } else if (url.equals("/post/modify")) {
             if (request.getMethod().equals("GET")) {
                 // GET = 해당 게시글의 수정화면 출력
