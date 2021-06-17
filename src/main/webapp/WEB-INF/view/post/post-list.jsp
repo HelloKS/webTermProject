@@ -54,6 +54,29 @@
             <a href="write">글 작성</a>
         </div>
     </c:if>
+    <div style="text-align: center">
+        <c:if test="${curpage > 1}">
+            <c:choose>
+                <c:when test="${!empty board}">
+                    <a href="/front/post/list?bdid=<c:out value="${board.id}"/>&page=<c:out value="${curpage-1}"/>"><</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/front/post/list?page=<c:out value="${curpage-1}"/>"><</a>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+        &nbsp;<c:out value="${curpage}"/>&nbsp;
+        <c:if test="${posts.size() == 10}">
+            <c:choose>
+                <c:when test="${!empty board}">
+                    <a href="/front/post/list?bdid=<c:out value="${board.id}"/>&page=<c:out value="${curpage+1}"/>">></a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/front/post/list?page=<c:out value="${curpage+1}"/>">></a>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+    </div>
 </div>
 <jsp:include page="../layout/footer.jsp"/>
 </body>

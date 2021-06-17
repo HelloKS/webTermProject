@@ -202,11 +202,11 @@ public class PostRepository {
         return article;
     }
 
-    public ArrayList<Post> findAll() {
+    public ArrayList<Post> findTenFromOffset(int offset) {
         Connection conn = null;
-        Statement st = null;
+        PreparedStatement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM POST P LEFT JOIN USER U ON P.user_uid = U.user_uid";
+        String sql = "SELECT * FROM POST P LEFT JOIN USER U ON P.user_uid = U.user_uid LIMIT ?, 10";
         ArrayList<Post> posts = new ArrayList<>();
         try {
             conn = ds.getConnection();
@@ -215,8 +215,9 @@ public class PostRepository {
             e.printStackTrace();
         }
         try {
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
+            st = conn.prepareStatement(sql);
+            st.setInt(1, offset);
+            rs = st.executeQuery();
             while (rs.next()) {
                 int aid = rs.getInt("post_id");
                 int bid = rs.getInt("board_id");
@@ -246,11 +247,11 @@ public class PostRepository {
         return posts;
     }
 
-    public ArrayList<Post> findByBoardId(int boardId) {
+    public ArrayList<Post> findTenFromOffsetByBoardId(int offset, int boardId) {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM POST WHERE board_id = ?";
+        String sql = "SELECT * FROM POST P LEFT JOIN USER U ON P.user_uid = U.user_uid WHERE board_id = ? LIMIT ?, 10";
         ArrayList<Post> posts = new ArrayList<>();
         try {
             conn = ds.getConnection();
@@ -261,6 +262,7 @@ public class PostRepository {
         try {
             st = conn.prepareStatement(sql);
             st.setInt(1, boardId);
+            st.setInt(2, offset);
 
             rs = st.executeQuery();
             while (rs.next()) {
@@ -272,6 +274,7 @@ public class PostRepository {
                 int hit = rs.getInt("post_hit");
                 int user = rs.getInt("user_uid");
                 Post article = new Post(aid, bid, title, content, regdate, hit, user);
+                article.setWriterName(rs.getString("user_name"));
                 posts.add(article);
             }
         } catch (SQLException e) {

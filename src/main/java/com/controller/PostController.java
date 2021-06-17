@@ -48,17 +48,23 @@ public class PostController implements Controller {
         } else if (url.equals("/post/list")) {
             // GET = 해당 게시판의 모든 게시글을 조회
             String bdid = request.getParameter("bdid");
+            String pageParam = request.getParameter("page");
+            int page = 1;
+            if (pageParam != null && !pageParam.isEmpty()) {
+                page = Integer.parseInt(pageParam);
+            }
             ArrayList<Post> posts = new ArrayList<>();
             Board board = null;
             if (bdid != null && !bdid.isEmpty()) {
-                posts = postService.findBoardPosts(Integer.parseInt(bdid));
+                posts = postService.findBoardPosts((page - 1) * 10, Integer.parseInt(bdid));
                 board = boardService.findBoardById(Integer.parseInt(bdid));
             } else {
-                posts = postService.findAllPosts();
+                posts = postService.findTenPostsFrom((page - 1) * 10);
             }
             modelAndView.setViewName("post/post-list");
             modelAndView.getModel().put("posts", posts);
             modelAndView.getModel().put("allboard", boardService.findBoards());
+            modelAndView.getModel().put("curpage", page);
             if (board != null) {
                 modelAndView.getModel().put("board", board);
             }

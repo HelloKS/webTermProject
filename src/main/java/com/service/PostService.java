@@ -18,14 +18,14 @@ public class PostService {
 	public void delete(int id) {
         postRepository.delete(id);
 	}
-	public ArrayList<Post> findAllPosts() {
-        return postRepository.findAll();
+	public ArrayList<Post> findTenPostsFrom(int offset) {
+        return postRepository.findTenFromOffset(offset);
     }
     public Post findArticleById(int id) {
 		return postRepository.findById(id);
 	}
-	public ArrayList<Post> findBoardPosts(int boardId) {
-		return postRepository.findByBoardId(boardId);
+	public ArrayList<Post> findBoardPosts(int offset, int boardId) {
+		return postRepository.findTenFromOffsetByBoardId(offset, boardId);
 	}
 	public void addHit(int id) {postRepository.updateHit(id);}
 }
