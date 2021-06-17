@@ -15,7 +15,7 @@
 <jsp:include page="../layout/header.jsp"/>
 <div class="content">
     처리가 완료되었습니다.
-    <a href="/front/board/list">목록으로 돌아가기</a>
+    <a href="/front/post/list">목록으로 돌아가기</a>
 </div>
 <jsp:include page="../layout/footer.jsp"/>
 </body>

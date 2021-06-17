@@ -16,7 +16,7 @@
 
         <div class="menu">
             <a href="/front/member/members">회원목록</a>
-            <a href="/front/board/list">게시판</a>
+            <a href="/front/post/list">게시판</a>
         </div>
 
         <div class="util">

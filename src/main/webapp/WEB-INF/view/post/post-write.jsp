@@ -17,7 +17,7 @@
 <jsp:include page="../layout/header.jsp"/>
 <h2 style="text-align: center">게시글 작성</h2>
 <div class="content">
-    <form action="/front/board/write" method="post">
+    <form action="/front/post/write" method="post">
         <table width="80%" border="3" bordercolor="lightgray" align="center">
             <thead>
             <tr>

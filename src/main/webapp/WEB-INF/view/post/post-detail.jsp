@@ -19,30 +19,30 @@
     <thead>
     <tr>
         <td width="30%">게시글 번호</td>
-        <td width="60%"><c:out value="${board.id}"/></td>
+        <td width="60%"><c:out value="${post.id}"/></td>
     </tr>
     <tr>
         <td>제목</td>
-        <td><c:out value="${board.title}"/></td>
+        <td><c:out value="${post.title}"/></td>
     </tr>
     <tr>
         <td>작성자 이름</td>
-        <td><c:out value="${board.writer}"/></td>
+        <td><c:out value="${post.writerId}"/></td>
     </tr>
     <tr>
         <td>작성 일자</td>
-        <td><c:out value="${board.regdate}"/></td>
+        <td><c:out value="${post.regdate}"/></td>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>내용</td>
-        <td><c:out value="${board.contents}"/></td>
+        <td><c:out value="${post.contents}"/></td>
     </tr>
     </tbody>
 </table>
 <a href="list">뒤로 가기</a>
-<a href="modify?id=<c:out value="${board.id}"/>">수정</a>
-<a href="delete?id=<c:out value="${board.id}"/>">삭제</a>
+<a href="modify?id=<c:out value="${post.id}"/>">수정</a>
+<a href="delete?id=<c:out value="${post.id}"/>">삭제</a>
 </body>
 </html>
