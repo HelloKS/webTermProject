@@ -26,6 +26,10 @@
         <td><c:out value="${post.title}"/></td>
     </tr>
     <tr>
+        <td>게시판</td>
+        <td><c:out value="${board.name}"/></td>
+    </tr>
+    <tr>
         <td>작성자 이름</td>
         <td><c:out value="${post.writerId}"/></td>
     </tr>
