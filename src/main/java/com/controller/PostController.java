@@ -5,6 +5,7 @@ import com.domain.Member;
 import com.domain.Post;
 import com.service.BoardService;
 import com.service.PostService;
+import com.service.CommentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
