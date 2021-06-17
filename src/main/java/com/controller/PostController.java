@@ -44,11 +44,21 @@ public class PostController implements Controller {
             }
         } else if (url.equals("/post/list")) {
             // GET = 해당 게시판의 모든 게시글을 조회
-            //int boardId = Integer.parseInt(request.getParameter("boardId"));
-            //ArrayList<Post> posts = postService.findBoardPosts(boardId);
-            ArrayList<Post> posts = postService.findAllPosts();
+            String bdid = request.getParameter("bdid");
+            ArrayList<Post> posts = new ArrayList<>();
+            Board board = null;
+            if (bdid != null && !bdid.isEmpty()) {
+                posts = postService.findBoardPosts(Integer.parseInt(bdid));
+                board = boardService.findBoardById(Integer.parseInt(bdid));
+            } else {
+                posts = postService.findAllPosts();
+            }
             modelAndView.setViewName("post/post-list");
             modelAndView.getModel().put("posts", posts);
+            modelAndView.getModel().put("allboard", boardService.findBoards());
+            if (board != null) {
+                modelAndView.getModel().put("board", board);
+            }
         } else if (url.equals("/post/detail")) {
             // 해당 게시글의 상세 내용 조회
             int postid = Integer.parseInt(request.getParameter("id"));
