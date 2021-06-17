@@ -39,7 +39,7 @@ public class PostRepository {
     public void delete(int id) {
         Connection conn = null;
         PreparedStatement st = null;
-        String sql = "DELETE FROM POST WHERE id = ?";
+        String sql = "DELETE FROM POST WHERE post_id = ?";
         try {
             conn = ds.getConnection();
         } catch (SQLException e) {
@@ -112,6 +112,7 @@ public class PostRepository {
             st.setInt(1, post.getBoardId());
             st.setString(2, post.getTitle());
             st.setString(3, post.getContents());
+            st.setInt(4, post.getId());
 
             st.executeUpdate();
         } catch (SQLException e) {
@@ -132,7 +133,7 @@ public class PostRepository {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM POST WHERE id = ?";
+        String sql = "SELECT * FROM POST WHERE post_id = ?";
         Post article = null;
         try {
             conn = ds.getConnection();
@@ -142,7 +143,7 @@ public class PostRepository {
         }
         try {
             st = conn.prepareStatement(sql);
-            st.setLong(1, id);
+            st.setInt(1, id);
             System.out.println(st);
             rs = st.executeQuery();
             while (rs.next()) {

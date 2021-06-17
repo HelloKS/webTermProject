@@ -19,6 +19,7 @@ public class FrontController extends HttpServlet{
 	public FrontController() {
 		controllerMap.put("member", new MemberController());				
 		controllerMap.put("board", new BoardController());
+		controllerMap.put("post", new PostController());
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
