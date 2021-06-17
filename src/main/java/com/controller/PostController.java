@@ -1,13 +1,7 @@
 package com.controller;
 
-import com.domain.Board;
-import com.domain.Comment;
-import com.domain.Member;
-import com.domain.Post;
-import com.service.BoardService;
-import com.service.MemberService;
-import com.service.PostService;
-import com.service.CommentService;
+import com.domain.*;
+import com.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +17,7 @@ public class PostController implements Controller {
     private final BoardService boardService = new BoardService();
     private final MemberService memberService = new MemberService();
     private final CommentService commentService = new CommentService();
+    private final AgreeService agreeService = new AgreeService();
     private LocalDateTime current = null;
 
     @Override
@@ -73,6 +68,18 @@ public class PostController implements Controller {
         } else if (url.equals("/post/detail")) {
             int postid = Integer.parseInt(request.getParameter("id"));
             Member user = (Member) request.getSession().getAttribute("LOGIN");
+
+            int agreeCount = agreeService.countAgreeByPostId(postid);
+            if(user != null) {
+                int userid = user.getUid();
+                Agree agree = new Agree(userid, postid);
+                if (agreeService.findAgree(userid, postid) == null) {
+                    agreeService.save(agree);
+                } else {
+                    agreeService.delete(agree);
+                }
+            }
+
             //댓글 작성
             if(request.getMethod().equals("POST")) {
                 int user_uid = user.getUid();
@@ -89,6 +96,7 @@ public class PostController implements Controller {
             Post article = postService.findArticleById(postid);
             Board board = boardService.findBoardById(article.getBoardId());
             modelAndView.setViewName("post/post-detail");
+            modelAndView.getModel().put("agreeCount", agreeCount);
             modelAndView.getModel().put("post", article);
             modelAndView.getModel().put("board", board);
             modelAndView.getModel().put("comments", comments);
