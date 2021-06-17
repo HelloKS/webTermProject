@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
+<jsp:include page="../layout/header.jsp"/>
 <form action="/front/post/modify" method="post">
     <input type="hidden" name="id" value="<c:out value="${post.id}"/>">
     <table width="700" border="3" bordercolor="lightgray" align="center">
@@ -53,5 +54,6 @@
     <input type="submit" value="게시글 수정"/>
 </form>
 <a href="/post/list">취소</a>
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

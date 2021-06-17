@@ -14,6 +14,7 @@
     <title>글 읽기</title>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp"/>
 <h2 style="text-align: center">게시글 열람</h2>
 <table width="100%" border="3" bordercolor="lightgray" align="center">
     <thead>
@@ -46,7 +47,10 @@
     </tbody>
 </table>
 <a href="list">뒤로 가기</a>
-<a href="modify?id=<c:out value="${post.id}"/>">수정</a>
-<a href="delete?id=<c:out value="${post.id}"/>">삭제</a>
+<c:if test="${!empty LOGIN}">
+    <a href="modify?id=<c:out value="${post.id}"/>">수정</a>
+    <a href="delete?id=<c:out value="${post.id}"/>">삭제</a>
+</c:if>
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>
