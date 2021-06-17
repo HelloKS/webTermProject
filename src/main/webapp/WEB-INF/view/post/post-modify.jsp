@@ -54,7 +54,7 @@
         </table>
         <input type="submit" value="게시글 수정"/>
     </form>
-    <a href="/post/list">취소</a>
+    <a href="/front/post/list">취소</a>
 </div>
 <jsp:include page="../layout/footer.jsp"/>
 </body>
