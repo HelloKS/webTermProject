@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.domain.Board;
+import com.domain.Comment;
 import com.domain.Member;
 import com.domain.Post;
 import com.service.BoardService;
@@ -21,6 +22,7 @@ public class PostController implements Controller {
     private final PostService postService = new PostService();
     private final BoardService boardService = new BoardService();
     private final MemberService memberService = new MemberService();
+    private final CommentService commentService = new CommentService();
     private LocalDateTime current = null;
 
     @Override
@@ -69,14 +71,29 @@ public class PostController implements Controller {
                 modelAndView.getModel().put("board", board);
             }
         } else if (url.equals("/post/detail")) {
-            // 해당 게시글의 상세 내용 조회
             int postid = Integer.parseInt(request.getParameter("id"));
+            Member user = (Member) request.getSession().getAttribute("LOGIN");
+            //댓글 작성
+            if(request.getMethod().equals("POST")) {
+                int user_uid = user.getUid();
+                String content = request.getParameter("comment_content");
+                Comment comment = new Comment();
+                comment.setCmt_content(content);
+                comment.setPost_id(postid);
+                comment.setUser_uid(user_uid);
+                commentService.write(comment);
+            }
+            // 해당 게시글의 상세 내용 조회
             postService.addHit(postid);
+            ArrayList<Comment> comments = commentService.showComment(postid);
             Post article = postService.findArticleById(postid);
             Board board = boardService.findBoardById(article.getBoardId());
             modelAndView.setViewName("post/post-detail");
             modelAndView.getModel().put("post", article);
             modelAndView.getModel().put("board", board);
+            modelAndView.getModel().put("comments", comments);
+
+
         } else if (url.equals("/post/modify")) {
             if (request.getMethod().equals("GET")) {
                 // GET = 해당 게시글의 수정화면 출력
@@ -103,6 +120,20 @@ public class PostController implements Controller {
             int postId = Integer.parseInt(request.getParameter("id"));
             postService.delete(postId);
             modelAndView.setViewName("post/post-writeok");
+        } else if (url.equals("/post/commentDelete")){
+            //댓글 삭제
+            int postid = Integer.parseInt(request.getParameter("id"));
+            int cmtId = Integer.parseInt(request.getParameter("cmt_id"));
+            commentService.delete(cmtId);
+            //페이지 다시불러오기
+            postService.addHit(postid);
+            ArrayList<Comment> comments = commentService.showComment(postid);
+            Post article = postService.findArticleById(postid);
+            Board board = boardService.findBoardById(article.getBoardId());
+            modelAndView.setViewName("post/post-detail");
+            modelAndView.getModel().put("post", article);
+            modelAndView.getModel().put("board", board);
+            modelAndView.getModel().put("comments", comments);
         } else {
             // 이외의 요청은 404 NOT FOUND
             modelAndView.setStatus(HttpServletResponse.SC_NOT_FOUND);

@@ -8,16 +8,18 @@ public class Comment {
     private String cmt_content;
     private LocalDateTime cmt_date;
     private int user_uid; // member id (FK)
+    private String writer;
 
     public Comment() { }
 
-    public Comment(int cmt_id, int post_id, String cmt_content, LocalDateTime cmt_date, int user_uid)
+    public Comment(int cmt_id, int post_id, String cmt_content, LocalDateTime cmt_date, int user_uid, String writer)
     {
         this.cmt_id = cmt_id;
         this.post_id = post_id;
         this.cmt_content = cmt_content;
         this.cmt_date = cmt_date;
         this.user_uid = user_uid;
+        this.writer = writer;
     }
 
     public int getCmt_id() {
@@ -55,4 +57,8 @@ public class Comment {
     public void setUser_uid(int user_uid) {
         this.user_uid = user_uid;
     }
+
+    public String getWriter() { return writer; }
+
+    public void setWriter(String writer) { this.writer = writer; }
 }

@@ -48,6 +48,61 @@
         <tr>
             <td colspan="2"><c:out value="${post.contents}"/></td>
         </tr>
+        <!-- 댓글 부분 -->
+        <table width = "100%" border="1" bordercolor="lightgray">
+            <c:if test="${requestScope.comments != null}">
+                <c:forEach var="comment" items="${requestScope.comments}">
+                    <tr>
+                        <!-- 아이디, 작성날짜 -->
+                        <td width="25%">
+                            <div>
+                                    ${comment.writer}<br>
+                                <font size="2" color="#d3d3d3">${comment.cmt_date}</font>
+                            </div>
+                        </td>
+                        <!-- 본문 내용 -->
+                        <td width="60%">
+                            <div class="text_wrapper">
+                                    ${comment.cmt_content}
+                            </div>
+                        </td>
+                        <!-- 버튼 -->
+                        <td width="15%">
+                            <div id="btn" style="text-align:center;">
+                                <!-- 댓글 작성자만 삭제 -->
+                                <c:if test="${!empty LOGIN}">
+                                    <a href="commentDelete?id=<c:out value="${post.id}"/>&cmt_id=<c:out value="${comment.cmt_id}"/>">[삭제]</a>
+                                </c:if>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </c:if>
+            <!-- 로그인 했을 경우에만 댓글 작성 가능 -->
+            <c:if test="${!empty LOGIN}">
+                <tr>
+                    <!-- 아이디 -->
+                    <td width="25%">
+                        <div>
+                            댓글 작성
+                        </div>
+                    </td>
+                    <!-- 본문 작성 -->
+                    <form action="/front/post/detail" method="post">
+                        <td width="60%">
+                            <div>
+                                <input type="hidden" name="id" value="${post.id}">
+                                <textarea name="comment_content" rows="4" cols="70"></textarea>
+                            </div>
+                        </td>
+                        <!-- 댓글 등록 버튼 -->
+                        <td width="15%">
+                            <input type="submit" value="등록" style="text-align:center;">
+                        </td>
+                    </form>
+                </tr>
+            </c:if>
+        </table>
         </tbody>
     </table>
     <a href="list">뒤로 가기</a>
