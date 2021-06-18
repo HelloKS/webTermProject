@@ -70,18 +70,9 @@ public class PostController implements Controller {
             Member user = (Member) request.getSession().getAttribute("LOGIN");
 
             int agreeCount = agreeService.countAgreeByPostId(postid);
-            if(user != null) {
-                int userid = user.getUid();
-                Agree agree = new Agree(userid, postid);
-                if (agreeService.findAgree(userid, postid) == null) {
-                    agreeService.save(agree);
-                } else {
-                    agreeService.delete(agree);
-                }
-            }
 
             //댓글 작성
-            if(request.getMethod().equals("POST")) {
+            if (request.getMethod().equals("POST")) {
                 int user_uid = user.getUid();
                 String content = request.getParameter("comment_content");
                 Comment comment = new Comment();
@@ -100,7 +91,22 @@ public class PostController implements Controller {
             modelAndView.getModel().put("post", article);
             modelAndView.getModel().put("board", board);
             modelAndView.getModel().put("comments", comments);
-
+        } else if (url.equals("/post/agree")) {
+            String postid = request.getParameter("id");
+            if (postid != null && !postid.isEmpty()) {
+                Member user = (Member) request.getSession().getAttribute("LOGIN");
+                if (user != null) {
+                    int userid = user.getUid();
+                    Agree agree = new Agree(userid, Integer.parseInt(postid));
+                    if (agreeService.findAgree(userid, Integer.parseInt(postid)) == null) {
+                        agreeService.save(agree);
+                    } else {
+                        agreeService.delete(agree);
+                    }
+                }
+            }
+            modelAndView.setViewName("post/post-agreeok");
+            modelAndView.getModel().put("articleid", postid);
 
         } else if (url.equals("/post/modify")) {
             if (request.getMethod().equals("GET")) {

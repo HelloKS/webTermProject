@@ -54,23 +54,18 @@
             <td colspan="2"><c:out value="${post.contents}"/></td>
         </tr>
 
-
-        <form action="/front/post/detail" method="post">
-            <input type="hidden" name="id" value="${post.id}"/>
-            <table width = "100%" border="3" bordercolor="lightgray">
-                <tr>
-                    <td>추천수</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><c:out value="${agreeCount}"/></td>
-<c:if test="${!empty LOGIN}">
-                    <td><button class="agree">추천 꾹!</button></td>
-</c:if>
-                </tr>
-            </table>
-        </form>
-
+        <table width = "100%" border="3" bordercolor="lightgray">
+            <tr>
+                <td>추천수</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><c:out value="${agreeCount}"/></td>
+                <c:if test="${!empty LOGIN}">
+                    <td><button class="agree" onclick="window.location.href='/front/post/agree?id=<c:out value="${post.id}"/>'">추천 꾹!</button></td>
+                </c:if>
+            </tr>
+        </table>
 
         <!-- 댓글 부분 -->
         <table width = "100%" border="1" bordercolor="lightgray">
