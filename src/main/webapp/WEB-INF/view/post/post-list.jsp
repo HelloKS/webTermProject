@@ -8,6 +8,28 @@
     <meta charset="UTF-8">
     <title>게시판</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script>
+        /*let boardMenu = document.getElementsByClassName('boardList');
+
+        for(var i = 0; i < boardMenu.length; i++){
+            boardMenu[i].addEventListener('mouseover', changeBackground(), false);
+            boardMenu[i].addEventListener('mouseout', changeBackground(), false);
+        }
+        function changeBackground(event){
+            var color = this.style.backgroundColor;
+            if(event.type === "mouseover"){
+                boardMenu[i].style.backgroundColor = "gray";
+            }else{
+                boardMenu[i].style.backgroundColor = color;
+            }
+        }*/
+        function changeTableRowColor(row){
+            row.style.backgroundColor = "cyan";
+        }
+        function restoreTableRowColor(row){
+            row.style.backgroundColor = "white";
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -22,12 +44,12 @@
         </c:otherwise>
     </c:choose>
     <div style="text-align: center">
-        <a href="/front/post/list">전체</a>
+        <a href="/front/post/list" class="boardList">전체</a>
         <c:forEach var="bd" items="${allboard}">
-            <a href="/front/post/list?bdid=${bd.id}">${bd.name}</a>
+            <a href="/front/post/list?bdid=${bd.id}" class="boardList">${bd.name}</a>
         </c:forEach>
     </div>
-    <table width="100%" border="1" bordercolor="black" align="center">
+    <table class="itemList" width="100%" border="1" bordercolor="black" align="center">
         <thead>
         <tr>
             <td width="10%">no</td>
@@ -38,7 +60,7 @@
         </tr>
         </thead>
         <c:forEach var="post" items="${posts}">
-            <tr>
+            <tr onmouseover="changeTableRowColor(this)" onmouseout="restoreTableRowColor(this)">
                 <td>${post.id}</td>
                 <!--게시글 조회를 위한 href는 query string 사용, method = GET
                 href는 상대경로 사용 -> 현재경로 board/board-list, 요청경로 board/detail + request parameter -->

@@ -12,6 +12,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="utf-8">
     <title>글 읽기</title>
+    <script>
+        function bigger(){
+            document.getElementById('backButton').style.fontSize = "20px";
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -59,7 +64,9 @@
                 </tr>
                 <tr>
                     <td><c:out value="${agreeCount}"/></td>
+<c:if test="${!empty LOGIN}">
                     <td><button class="agree">추천 꾹!</button></td>
+</c:if>
                 </tr>
             </table>
         </form>
@@ -122,7 +129,7 @@
         </table>
         </tbody>
     </table>
-    <a href="list">뒤로 가기</a>
+    <a href="list" id="backButton" onmousedown="bigger()">뒤로 가기</a>
     <c:if test="${!empty LOGIN}">
         <a href="modify?id=<c:out value="${post.id}"/>">수정</a>
         <a href="delete?id=<c:out value="${post.id}"/>">삭제</a>
