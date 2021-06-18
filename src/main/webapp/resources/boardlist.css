@@ -1,0 +1,24 @@
+.content {
+    display: block;
+}
+
+.boardheader {
+    background-color: lightblue;
+    border: 1px solid dodgerblue;
+}
+
+@media (min-width: 768px) {
+    .content {
+        display: flex;
+        margin-right: 0.5rem;
+        flex-direction: row;
+    }
+
+    .boardheader {
+        width: 25%;
+    }
+
+    .articlelist {
+        width: 75%;
+    }
+}
